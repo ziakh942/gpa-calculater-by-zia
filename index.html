@@ -3,13 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPA Engine by Zia ul Islam</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Advanced GPA Engine & AI Advisor | By Zia ul Islam</title>
+    <meta name="title" content="Advanced GPA Engine & AI Advisor | By Zia ul Islam">
+    <meta name="description" content="Calculate your semester grades, predict future CGPA, and track university degree progress with this smart AI-powered GPA calculator built by Zia ul Islam.">
+    <meta name="keywords" content="GPA calculator, CGPA calculator, NUML GPA calculator, university grade calculator, AI GPA predictor, student degree progress, Zia ul Islam, web development">
+    <meta name="author" content="Zia ul Islam">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#030407">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/">
+    <meta property="og:title" content="Advanced GPA Engine & AI Advisor | By Zia ul Islam">
+    <meta property="og:description" content="Calculate your semester grades, predict future CGPA, and track degree progress with this smart AI-powered GPA calculator.">
+    <meta property="og:image" content="IMG-20260623-WA0003.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com/">
+    <meta property="twitter:title" content="Advanced GPA Engine & AI Advisor | By Zia ul Islam">
+    <meta property="twitter:description" content="Calculate your semester grades, predict future CGPA, and track degree progress with this smart AI-powered GPA calculator.">
+    <meta property="twitter:image" content="IMG-20260623-WA0003.jpg">
+
+    <!-- JSON-LD Structured Data for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "GPA Engine & AI Advisor",
+      "author": {
+        "@type": "Person",
+        "name": "Zia ul Islam",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "National University of Modern Languages (NUML)"
+        }
+      },
+      "description": "An advanced AI-powered GPA and CGPA calculator that tracks degree progress and predicts future academic performance for university students.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
     <style>
         :root {
@@ -54,7 +104,13 @@
         .credentials { color: var(--accent); font-size: 0.85rem; text-transform: uppercase; background: rgba(0, 240, 255, 0.05); padding: 5px 15px; border-radius: 20px; border: 1px solid rgba(0, 240, 255, 0.2); }
 
         .semester-block { background: rgba(0,0,0,0.6); border: 1px solid var(--glass-border); border-radius: 16px; padding: 20px; margin-bottom: 25px; position: relative; }
-        .semester-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 15px; color: var(--accent); }
+        .semester-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 15px; gap: 10px; }
+        .semester-header h2 { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
+        
+        /* New Individual Semester Performance Display Badges */
+        .sem-sgpa-badge { font-size: 0.8rem; font-weight: 700; font-family: 'Inter', sans-serif; background: rgba(255,255,255,0.03); color: var(--text-muted); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--glass-border); transition: var(--transition-smooth); margin-inline-start: auto; }
+        .sem-sgpa-badge.active { background: rgba(0, 240, 255, 0.08); color: var(--accent); border-color: rgba(0, 240, 255, 0.3); box-shadow: 0 0 12px rgba(0, 240, 255, 0.15); }
+
         .btn-delete-sem { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem; transition: 0.3s; padding: 5px; }
         .btn-delete-sem:hover { color: var(--danger); transform: scale(1.1); }
 
@@ -80,8 +136,8 @@
         /* --- DASHBOARD STYLES --- */
         .dashboard { display: none; margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--glass-border); }
         .card { background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px; margin-bottom: 20px; }
-        .card h3 { text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--accent); font-size: 0.95rem; }
-        body[dir="rtl"] .card h3 { letter-spacing: 0; }
+        .card h2 { text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--accent); font-size: 0.95rem; }
+        body[dir="rtl"] .card h2 { letter-spacing: 0; }
 
         .adv-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-bottom: 20px; }
         .adv-stat { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; text-align: center; }
@@ -116,47 +172,16 @@
         }
 
         @media (max-width: 600px) {
-            body {
-                padding: 20px 12px;
-            }
-
-            .container {
-                padding: 25px 16px;
-                border-radius: 16px;
-            }
-
-            h1 {
-                font-size: 1.45rem;
-            }
-
-            /* Transforms 4 horizontal elements into a clean, spacious 2-row block */
-            .course-row {
-                grid-template-columns: 1fr 1fr auto;
-                gap: 10px;
-                padding: 10px;
-            }
-
-            /* Pushes subject input to take up the full top row alone */
-            .course-row .c-name {
-                grid-column: span 3;
-            }
-
-            /* Softens dropdown heights for compact layouts */
-            input, select {
-                padding: 10px 12px;
-            }
-
-            /* Stacks 'Add Semester' and 'Clear Data' buttons vertically */
-            .btn-group-main {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            /* Overrides inline flex on target calculator inputs to stack cleanly */
-            .card div[style*="display: flex"] {
-                flex-direction: column !important;
-                gap: 10px !important;
-            }
+            body { padding: 20px 12px; }
+            .container { padding: 25px 16px; border-radius: 16px; }
+            h1 { font-size: 1.45rem; }
+            .course-row { grid-template-columns: 1fr 1fr auto; gap: 10px; padding: 10px; }
+            .course-row .c-name { grid-column: span 3; }
+            input, select { padding: 10px 12px; }
+            .btn-group-main { flex-direction: column; gap: 10px; }
+            .card div[style*="display: flex"] { flex-direction: column !important; gap: 10px !important; }
+            .semester-header { flex-wrap: wrap; }
+            .sem-sgpa-badge { order: 3; width: 100%; text-align: center; margin-top: 5px; }
         }
     </style>
 </head>
@@ -164,23 +189,23 @@
 
 <div class="bg-mesh"></div>
 
-<div class="top-controls">
-    <div class="lang-toggle">
+<header class="top-controls">
+    <div class="lang-toggle" aria-label="Language Selection">
         <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">EN</button>
         <button class="lang-btn" id="btn-ur" onclick="setLanguage('ur')">اردو</button>
         <button class="lang-btn" id="btn-ps" onclick="setLanguage('ps')">پښتو</button>
     </div>
-</div>
+</header>
 
-<div class="container" id="app-container">
+<main class="container" id="app-container">
     
     <div class="profile-section">
-        <img src="IMG-20260623-WA0003.jpg" alt="Zia" class="profile-img" onerror="this.src='https://via.placeholder.com/100/030407/00f0ff?text=ZIA'">
+        <img src="IMG-20260623-WA0003.jpg" alt="Zia ul Islam - NUML Computer Science Student" class="profile-img" onerror="this.src='https://via.placeholder.com/100/030407/00f0ff?text=ZIA'">
         <h1><span data-i18n="titlePrefix">GPA Calc by</span> <span>Zia ul Islam</span></h1>
         <div class="credentials" data-i18n="credentials">NUML • Computer Science</div>
     </div>
     
-    <div id="semesters-container"></div>
+    <section id="semesters-container" aria-label="Semester Data Entry"></section>
 
     <div class="btn-group-main">
         <button class="btn-outline" onclick="addSemester()" data-i18n="btnAddSem" style="border-color: var(--text-muted); color: var(--text-muted);">+ Add Semester</button>
@@ -189,10 +214,10 @@
     
     <button class="btn-primary" onclick="calculateEngine()" data-i18n="btnAnalyzeAll">Check Full Result</button>
 
-    <div class="dashboard" id="dashboard">
+    <section class="dashboard" id="dashboard" aria-label="Performance Dashboard">
         
-        <div class="card">
-            <h3 data-i18n="lblCoreStats">Overall Result Summary</h3>
+        <article class="card">
+            <h2 data-i18n="lblCoreStats">Overall Result Summary</h2>
             <div class="adv-stats-grid">
                 <div class="adv-stat"><div class="val" id="statCGPA" style="color:var(--accent);">0.00</div><div class="lbl" data-i18n="lblCGPA">CGPA</div></div>
                 <div class="adv-stat"><div class="val" id="statHigh">0.00</div><div class="lbl" data-i18n="lblHigh">Highest SGPA</div></div>
@@ -210,39 +235,39 @@
                 <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:var(--text-muted); text-transform:uppercase;">
                     <span>
                         <span data-i18n="lblGradProg">Degree Progress</span>
-                        (<input type="number" id="degreeTotalCredits" class="degree-target-input" value="130" onchange="calculateEngine(true)">)
+                        (<input type="number" id="degreeTotalCredits" class="degree-target-input" value="130" onchange="calculateEngine(true)" aria-label="Total Degree Credits">)
                     </span>
                     <span id="gradPerc" style="color:var(--text-main); font-weight:700;">0%</span>
                 </div>
                 <div class="prog-container"><div class="prog-fill" id="gradBar"></div></div>
             </div>
-        </div>
+        </article>
 
-        <div class="card">
-            <h3 data-i18n="trendTitle">GPA Graph / Trend</h3>
+        <article class="card">
+            <h2 data-i18n="trendTitle">GPA Graph / Trend</h2>
             <div class="canvas-container"><canvas id="trendChart"></canvas></div>
-        </div>
+        </article>
 
         <div class="chart-grid-2">
-            <div class="card ai-assistant-card">
-                <h3 data-i18n="aiTitle">🧠 Predictive AI Advisor</h3>
+            <article class="card ai-assistant-card">
+                <h2 data-i18n="aiTitle">🧠 Predictive AI Advisor</h2>
                 <div class="ai-insights-box">
                     <ul class="ai-insights-list" id="aiInsightsBox"></ul>
                 </div>
-            </div>
+            </article>
             
-            <div class="card" style="background: rgba(0, 240, 255, 0.05); border-color: rgba(0, 240, 255, 0.2);">
-                <h3 data-i18n="targetTitle" style="color: var(--accent);">Target Calculator</h3>
+            <article class="card" style="background: rgba(0, 240, 255, 0.05); border-color: rgba(0, 240, 255, 0.2);">
+                <h2 data-i18n="targetTitle" style="color: var(--accent);">Target Calculator</h2>
                 <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                    <input type="number" id="targetGPA" placeholder="Target CGPA" step="0.1" max="4.0">
-                    <input type="number" id="futureCredits" placeholder="Future Credits">
+                    <input type="number" id="targetGPA" placeholder="Target CGPA" step="0.1" max="4.0" aria-label="Target CGPA">
+                    <input type="number" id="futureCredits" placeholder="Future Credits" aria-label="Future Credits">
                 </div>
                 <button class="btn-outline" style="width: 100%; border-color: var(--accent); color: var(--text-main);" onclick="calculateTarget()" data-i18n="btnTarget">Check Target</button>
                 <div id="smartSuggestion" style="font-size: 0.9rem; margin-top: 15px; color: var(--text-muted);" data-i18n="targetHint">Enter your goals to get smart advice.</div>
-            </div>
+            </article>
         </div>
-    </div>
-</div>
+    </section>
+</main>
 
 <script>
     const dict = {
@@ -253,7 +278,7 @@
             lblAttempt: "Total Credits", lblPass: "Passed", lblFail: "Failed", lblRem: "Remaining", lblGradProg: "Degree Progress",
             trendTitle: "GPA Graph / Trend",
             targetTitle: "Target Calculator", targetHint: "Enter your goals to get smart advice.", btnTarget: "Check Target",
-            semTitle: "Semester", btnAddCourse: "+ Add Subject",
+            semTitle: "Semester", btnAddCourse: "+ Add Subject", lblSGPA: "SGPA",
             placeholderCourse: "Subject Name (e.g., OOP)", gradeSelect: "Select Grade", creditSelect: "Credit Hours", marksUnit: "Marks", marksLessThan50: "Marks < 50", marks80Plus: "Marks >= 80",
             alertEmpty: "Please enter data in at least one subject.", alertReset: "Do you want to clear all data?", alertResetSem: "Delete this entire semester?",
             tgtErr: "Please enter Target CGPA and Credits.", tgtImp: "⚠️ Impossible. You need more than 4.0 SGPA.", tgtSafe: "✅ You're safe! Even if you fail, CGPA won't drop below target.", tgtReq: "🧠 Strategy: You need an average SGPA of",
@@ -281,7 +306,7 @@
             lblAttempt: "کل کریڈٹس", lblPass: "پاس", lblFail: "فیل", lblRem: "باقی", lblGradProg: "ڈگری پروگریس",
             trendTitle: "جی پی اے کا گراف",
             targetTitle: "ٹارگٹ کیلکولیٹر", targetHint: "اپنا ٹارگٹ لکھیں تاکہ ہم آپ کو مشورہ دے سکیں۔", btnTarget: "اپنا ٹارگٹ چیک کریں",
-            semTitle: "سیمسٹر", btnAddCourse: "+ ایک اور مضمون",
+            semTitle: "سیمسٹر", btnAddCourse: "+ ایک اور مضمون", lblSGPA: "ایس جی پی اے",
             placeholderCourse: "مضمون کا نام (مثلاً OOP)", gradeSelect: "گریڈ منتخب کریں", creditSelect: "کریڈٹ آورز", marksUnit: "مارکس", marksLessThan50: "50 مارکس سے کم", marks80Plus: "80 مارکس یا زیادہ",
             alertEmpty: "براہ کرم کم از کم ایک مضمون کا ڈیٹا ڈالیں۔", alertReset: "کیا آپ واقعی سارا ڈیٹا ڈیلیٹ کرنا چاہتے ہیں؟", alertResetSem: "کیا آپ واقعی یہ سیمسٹر ڈیلیٹ کرنا چاہتے ہیں؟",
             tgtErr: "پہلے اپنا ٹارگٹ جی پی اے اور کریڈٹ آورز لکھیں۔", tgtImp: "⚠️ ناممکن! آپ کو 4.0 سے زیادہ SGPA چاہیے جو ہو نہیں سکتا۔", tgtSafe: "✅ ٹینشن فری! اگر آپ فیل بھی ہو جائیں تو CGPA آپ کے ٹارگٹ سے نیچے نہیں گرے گا۔", tgtReq: "🧠 مشورہ: آپ کو اتنے SGPA کی ضرورت ہے:",
@@ -295,7 +320,7 @@
             aiRiskFail: "⚠️ **رسک:** آپ کے <span class='ai-danger'>{n} مضامین فیل ہیں</span>۔ پہلے ان کو کلیئر کریں۔",
             aiWeakest: "🎯 **کمزور مضمون:** آپ کا سب سے کمزور مضمون <span class='ai-danger'>'{subj}'</span> (گریڈ: {grade}) ہے۔", 
             aiImprove: "💡 **مشورہ:** اگر آپ '{subj}' میں 4.0 لے لیں، تو آپ کا CGPA چھلانگ لگا کر <span class='ai-highlight'>{newCgpa}</span> ہو جائے گا۔", 
-            aiPredict: "🔮 **مستقبل کی پیشنگوئی:** اگر یہی رفتار رہی تو اگلے سیمسٹر میں آپ کا CGPA تقریباً <span class='ai-highlight'>{x}</span> ہو جائے گا۔",
+            aiPredict: "🔮 **مستقبل کی پیشنگوئی:** اگر یہی رفتار رہی تو اگلے سیمسٹر میں آپ کا عین ممکنہ CGPA <span class='ai-highlight'>{x}</span> ہو جائے گا۔",
             aiHonorsHigh: "🎖️ **میڈل چانس:** شاندار کارکردگی! گولڈ میڈل یا ہائی آنرز کے چانسز بہت زیادہ ہیں۔",
             aiHonorsGood: "🎖️ **آنرز چانس:** آپ آنرز کے ساتھ ڈگری مکمل کرنے کے قریب ہیں۔",
             aiDiffHigh: "🔥 **مشکل / بوجھ:** آپ نے {c}+ کریڈٹس اٹھائے ہوئے ہیں جو کہ کافی ہیوی لوڈ ہے۔ ٹائم مینج کریں۔",
@@ -309,7 +334,7 @@
             lblAttempt: "ټول کریډیټ اورز", lblPass: "پاس شوي", lblFail: "پاتې شوي", lblRem: "پاتې", lblGradProg: "د ډیګرۍ پرمختګ",
             trendTitle: "د جي پي اې ګراف",
             targetTitle: "د ټارګټ کیلکولیټر", targetHint: "د ښې مشورې لپاره خپل ټارګټ ولیکئ.", btnTarget: "ټارګټ وګورئ",
-            semTitle: "سمسټر", btnAddCourse: "+ مضمون ولیکئ",
+            semTitle: "سمسټر", btnAddCourse: "+ مضمون ولیکئ", lblSGPA: "SGPA",
             placeholderCourse: "د مضمون نوم (لکه OOP)", gradeSelect: "ګریډ وټاکئ", creditSelect: "کریډیټ اورز", marksUnit: "نمبرې", marksLessThan50: "50 نمبرو څخه کم", marks80Plus: "80 نمبرې یا زیات",
             alertEmpty: "لږ تر لږه د یوه مضمون معلومات ولیکئ.", alertReset: "ایا غواړئ ټول معلومات ړنګ کړئ؟", alertResetSem: "ایا غواړئ دا سمسټر ړنګ کړئ؟",
             tgtErr: "خپل هدف او کریډیټ اورز ولیکئ.", tgtImp: "⚠️ دا ناممکنه ده. تاسو له 4.0 نه زیات SGPA ته اړتیا لرئ.", tgtSafe: "✅ تاسو خوندي یاست! که فیل هم شئ، CGPA به مو نه ښکته کیږي.", tgtReq: "🧠 مشوره: تاسو دومره SGPA ته اړتیا لرئ:",
@@ -322,7 +347,7 @@
             aiRiskCgpa: "🚨 **لوړ خطر:** ستاسو CGPA له 2.0 نه کم دی. ډیر محنت ته اړتیا لرئ.",
             aiRiskFail: "⚠️ **خطر:** ستاسو <span class='ai-danger'>{n} مضامین فیل دي</span>. لومړی دا پاس کړئ.",
             aiWeakest: "🎯 **کمزوری مضمون:** ستاسو تر ټولو کمزوری مضمون <span class='ai-danger'>'{subj}'</span> (ګریډ: {grade}) دی.", 
-            aiImprove: "💡 **مشوره:** که په '{subj}' کې 4.0 واخلئ، CGPA به مو <span class='ai-highlight'>{newCgpa}</span> ته لوړه شي.", 
+            aiImprove: "💡 **مشوره:** اگر په '{subj}' کې 4.0 واخلئ، CGPA به مو <span class='ai-highlight'>{newCgpa}</span> ته لوړه شي.", 
             aiPredict: "🔮 **راتلونکی:** په دې رفتار سره به راتلونکي سمسټر کې ستاسو CGPA شاوخوا <span class='ai-highlight'>{x}</span> وي.",
             aiHonorsHigh: "🎖️ **ویاړ:** ډیر ښه! د ګولډ میډال یا عالي ویاړونو سره د فراغت چانس ډیر دی.",
             aiHonorsGood: "🎖️ **ویاړ:** تاسو د افتخار سره د ډیګرۍ بشپړولو ته نږدې یاست.",
@@ -360,26 +385,51 @@
         document.getElementById('targetGPA').placeholder = lang === 'en' ? "Target CGPA" : (lang === 'ur' ? "ٹارگٹ CGPA" : "ټارګټ CGPA"); 
         document.getElementById('futureCredits').placeholder = lang === 'en' ? "Future Credits" : (lang === 'ur' ? "مزید کریڈٹس" : "نور کریډیټونه");
         
+        calculateLiveSGPAs();
         if(document.getElementById('dashboard').style.display === 'block') calculateEngine(true);
     }
 
     function createGradeDropdown(selected = "") {
-        let l = dict[currentLang], h = `<select class="c-grade" required><option value="" disabled ${selected===""?"selected":""}>${l.gradeSelect}</option>`;
+        let l = dict[currentLang], h = `<select class="c-grade" required aria-label="Select Grade"><option value="" disabled ${selected===""?"selected":""}>${l.gradeSelect}</option>`;
         h += `<option value="0.0" ${selected==="0.0"?"selected":""}>0.0 (${l.marksLessThan50})</option>`;
         for (let i = 10; i <= 39; i++) h += `<option value="${(i/10).toFixed(1)}" ${selected===(i/10).toFixed(1)?"selected":""}>${(i/10).toFixed(1)} (${i-10+50} ${l.marksUnit})</option>`;
         return h + `<option value="4.0" ${selected==="4.0"?"selected":""}>4.0 (${l.marks80Plus})</option></select>`;
     }
     
     function createCreditDropdown(selected = "") {
-        let h = `<select class="c-credits" required><option value="" disabled ${selected===""?"selected":""}>${dict[currentLang].creditSelect}</option>`;
+        let h = `<select class="c-credits" required aria-label="Select Credits"><option value="" disabled ${selected===""?"selected":""}>${dict[currentLang].creditSelect}</option>`;
         for (let i = 1; i <= 20; i++) h += `<option value="${i}" ${selected==i?"selected":""}>${i}</option>`; return h + `</select>`;
     }
 
     document.addEventListener("DOMContentLoaded", () => { Chart.defaults.color = '#8b95a5'; Chart.defaults.font.family = "'Inter', sans-serif"; loadFromStorage(); });
 
+    // Uses textContent to securely keep structural layout elements untouched
     function updateSemesterNumbers() {
         document.querySelectorAll('.semester-block').forEach((block, index) => {
-            block.querySelector('h3').innerHTML = `${dict[currentLang].semTitle} ${index + 1}`;
+            block.querySelector('.semester-header h2').textContent = `${dict[currentLang].semTitle} ${index + 1}`;
+        });
+    }
+
+    /* Live performance processor mapping individual semester calculations dynamically */
+    function calculateLiveSGPAs() {
+        document.querySelectorAll('.semester-block').forEach(block => {
+            const id = block.id.replace('sem-block-', '');
+            let sPts = 0, sCreds = 0;
+            block.querySelectorAll('.course-row').forEach(r => {
+                const g = parseFloat(r.querySelector('.c-grade').value), c = parseFloat(r.querySelector('.c-credits').value);
+                if(!isNaN(g) && !isNaN(c)) { sPts += (g*c); sCreds += c; }
+            });
+            const badge = document.getElementById(`sgpa-display-${id}`);
+            if(badge) {
+                const localizedLabel = dict[currentLang].lblSGPA || "SGPA";
+                if(sCreds > 0) {
+                    badge.innerText = `${localizedLabel}: ${(sPts / sCreds).toFixed(2)}`;
+                    badge.classList.add('active');
+                } else {
+                    badge.innerText = `${localizedLabel}: 0.00`;
+                    badge.classList.remove('active');
+                }
+            }
         });
     }
 
@@ -388,14 +438,15 @@
         const div = document.createElement('div'); div.className = 'semester-block'; div.id = `sem-block-${id}`;
         div.innerHTML = `
             <div class="semester-header">
-                <h3>${dict[currentLang].semTitle}</h3>
-                <button class="btn-delete-sem" onclick="removeSemester(${id})" title="Delete Semester">🗑️</button>
+                <h2>${dict[currentLang].semTitle}</h2>
+                <span class="sem-sgpa-badge" id="sgpa-display-${id}">${dict[currentLang].lblSGPA}: 0.00</span>
+                <button class="btn-delete-sem" onclick="removeSemester(${id})" title="Delete Semester" aria-label="Delete Semester">🗑️</button>
             </div>
             <div id="course-list-${id}"></div>
             <button class="btn-add-course" onclick="addCourseRow(${id})">${dict[currentLang].btnAddCourse}</button>
         `;
         document.getElementById('semesters-container').appendChild(div); 
-        addCourseRow(id); updateSemesterNumbers(); saveToStorage();
+        addCourseRow(id); updateSemesterNumbers(); saveToStorage(); calculateLiveSGPAs();
     }
 
     function removeSemester(id) {
@@ -411,8 +462,8 @@
     
     function addCourseRow(id, n="", g="", c="") {
         const div = document.createElement('div'); div.className = 'course-row';
-        div.innerHTML = `<input type="text" placeholder="${dict[currentLang].placeholderCourse}" class="c-name" value="${n}">${createGradeDropdown(g)}${createCreditDropdown(c)}<button class="btn-remove" onclick="this.parentElement.remove(); saveToStorage();">✕</button>`;
-        document.getElementById(`course-list-${id}`).appendChild(div); saveToStorage();
+        div.innerHTML = `<input type="text" placeholder="${dict[currentLang].placeholderCourse}" class="c-name" value="${n}" aria-label="Subject Name">${createGradeDropdown(g)}${createCreditDropdown(c)}<button class="btn-remove" onclick="this.parentElement.remove(); saveToStorage(); calculateLiveSGPAs();" aria-label="Remove Subject">✕</button>`;
+        document.getElementById(`course-list-${id}`).appendChild(div); saveToStorage(); calculateLiveSGPAs();
     }
 
     let saveTimeout = null;
@@ -437,8 +488,9 @@
             const b = document.createElement('div'); b.className = 'semester-block'; b.id = `sem-block-${id}`;
             b.innerHTML = `
                 <div class="semester-header">
-                    <h3>${dict[currentLang].semTitle}</h3>
-                    <button class="btn-delete-sem" onclick="removeSemester('${id}')" title="Delete Semester">🗑️</button>
+                    <h2>${dict[currentLang].semTitle}</h2>
+                    <span class="sem-sgpa-badge" id="sgpa-display-${id}">${dict[currentLang].lblSGPA}: 0.00</span>
+                    <button class="btn-delete-sem" onclick="removeSemester('${id}')" title="Delete Semester" aria-label="Delete Semester">🗑️</button>
                 </div>
                 <div id="course-list-${id}"></div>
                 <button class="btn-add-course" onclick="addCourseRow('${id}')">${dict[currentLang].btnAddCourse}</button>
@@ -448,6 +500,7 @@
         }); else addSemester();
         
         updateSemesterNumbers();
+        calculateLiveSGPAs();
     }
 
     function clearData() { 
@@ -582,8 +635,15 @@
         if (reqGPA > 4.0) s.innerHTML = `<span style="color:var(--danger)">${l.tgtImp}</span>`; else if (reqGPA <= 0) s.innerHTML = `<span style="color:var(--success)">${l.tgtSafe}</span>`; else s.innerHTML = `<span style="color:var(--accent)">${l.tgtReq} <b>${reqGPA.toFixed(2)}</b>.</span>`;
     }
 
-    document.getElementById('semesters-container').addEventListener('input', debounceSave);
-    document.getElementById('semesters-container').addEventListener('change', saveToStorage);
+    // Listens across user typing behaviors to fire live per-semester data recalculations
+    document.getElementById('semesters-container').addEventListener('input', () => {
+        debounceSave();
+        calculateLiveSGPAs();
+    });
+    document.getElementById('semesters-container').addEventListener('change', () => {
+        saveToStorage();
+        calculateLiveSGPAs();
+    });
 </script>
 
 </body>
